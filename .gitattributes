@@ -1,2 +1,8 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Normalize line endings for all files that Git considers text files.
+* text=auto eol=lf
+
+# Only include easy-peasy-multiplayer for exporting
+/**        export-ignore
+/addons/** export-ignore
+/addons    !export-ignore
+/addons/easy-peasy-multiplayer

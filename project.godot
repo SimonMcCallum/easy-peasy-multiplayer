@@ -1,0 +1,26 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Easy Peasy Multiplayer"
+run/main_scene="uid://pmsw6eydfmh5"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+SteamInfo="*res://addons/easy_peasy_networking/steam_info.gd"
+Network="*res://addons/easy_peasy_networking/networking/network.gd"
+DevTools="*res://addons/dev_tools/dev_tools.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dev_tools/plugin.cfg", "res://addons/easy_peasy_networking/plugin.cfg", "res://addons/easypeasynetworking/plugin.cfg")
