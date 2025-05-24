@@ -20,6 +20,7 @@ func become_host(_lobby_type):
 	Network.connected_players[1] = Network.player_info
 	Network.server_started.emit()
 	Network.player_connected.emit(1, Network.player_info)
+	Network.is_host = true
 	if Network._is_verbose:
 		print("ENet Server hosted on port " + str(PORT))
 
@@ -31,6 +32,7 @@ func join_as_client():
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 
 	multiplayer.multiplayer_peer = peer
+	Network.is_host = false
 
 ## This does nothing as Enet does not have a lobby implementation. It is only here to prevent errors.
 func list_lobbies():

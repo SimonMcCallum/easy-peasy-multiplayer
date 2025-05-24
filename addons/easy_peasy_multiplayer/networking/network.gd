@@ -179,6 +179,7 @@ func disconnect_from_server(network_type : MultiplayerNetworkType = MultiplayerN
 	multiplayer.multiplayer_peer = null
 	connected_players.clear()
 	steam_lobby_id = 0
+	Network.is_host = false
 	_build_multiplayer_network(true)
 
 ## Lists any lobbies that the current [Network.active_network_type] can find. NOTE: This function does nothing when using Enet as the network type, as there is no lobby system when using Enet.

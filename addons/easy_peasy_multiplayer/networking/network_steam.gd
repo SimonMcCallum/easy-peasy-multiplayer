@@ -84,6 +84,7 @@ func _create_host():
 	Network.connected_players[1] = Network.player_info
 	Network.server_started.emit()
 	Network.player_connected.emit(1, Network.player_info)
+	Network.is_host = true
 	if Network._is_verbose:
 		print("Steam lobby hosted with id %s" % Network.steam_lobby_id)
 
@@ -142,5 +143,6 @@ func connect_socket(steam_id : int):
 	if Network._is_verbose:
 		print("Connecting peer to host...")
 	multiplayer.multiplayer_peer = peer
+	Network.is_host = false
 #endregion
 #endregion
