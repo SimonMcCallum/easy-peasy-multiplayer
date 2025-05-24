@@ -24,6 +24,10 @@ Network="*res://addons/easy_peasy_multiplayer/networking/network.gd"
 
 file_logging/enable_file_logging=true
 
+[easy_peasy_multiplayer]
+
+general/verbose_network_logging=true
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/easy_peasy_multiplayer/plugin.cfg")

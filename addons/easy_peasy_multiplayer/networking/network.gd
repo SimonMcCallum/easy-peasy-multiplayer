@@ -57,7 +57,7 @@ var steam_lobby_id: int = 0
 var _is_verbose: bool = false
 
 func _ready():
-	ProjectSettings.settings_changed.connect(_update_settings)
+	_update_settings()
 
 	# So many signals :O
 	multiplayer.peer_connected.connect(_on_player_connected)
@@ -122,8 +122,8 @@ func dev_disconnect():
 
 ## This is for updating the values from the [ProjectSettings]
 func _update_settings() -> void:
-	if ProjectSettings.has_setting("easy_peasy_networking/general/verbose_network_logging"):
-		_is_verbose = ProjectSettings.get_setting("easy_peasy_networking/general/verbose_network_logging", false)
+	if ProjectSettings.has_setting("easy_peasy_multiplayer/general/verbose_network_logging"):
+		_is_verbose = ProjectSettings.get_setting("easy_peasy_multiplayer/general/verbose_network_logging", false)
 
 #region Private Network Setup Functions
 ## Sets the active network to the active network type
