@@ -54,7 +54,7 @@ var steam_lobby_data = {
 var steam_lobby_id: int = 0
 
 ## Whether the network manager should print its actions to standard output
-var is_verbose: bool = false
+var _is_verbose: bool = false
 
 func _ready():
 	ProjectSettings.settings_changed.connect(_update_settings)
@@ -106,12 +106,12 @@ func dev_host_lobby():
 	become_host()
 
 ## Joins a lobby using the argument passed in as either a Steam lobbyID or an IP address, depending on the type of network used
-func dev_join_lobby(args: Array[String]):
+func dev_join_lobby(connector: String):
 	if active_network_type == MultiplayerNetworkType.STEAM:
-		steam_lobby_id = args[0].to_int()
+		steam_lobby_id = connector.to_int()
 	else:
-		if args:
-			ip_address = args[0]
+		if connector:
+			ip_address =connector
 
 	join_as_client()
 
@@ -123,7 +123,7 @@ func dev_disconnect():
 ## This is for updating the values from the [ProjectSettings]
 func _update_settings() -> void:
 	if ProjectSettings.has_setting("easy_peasy_networking/general/verbose_network_logging"):
-		is_verbose = ProjectSettings.get_setting("easy_peasy_networking/general/verbose_network_logging", false)
+		_is_verbose = ProjectSettings.get_setting("easy_peasy_networking/general/verbose_network_logging", false)
 
 #region Private Network Setup Functions
 ## Sets the active network to the active network type
@@ -131,15 +131,15 @@ func _build_multiplayer_network(destroy_previous_network : bool = false):
 	if not active_network or destroy_previous_network:
 		match active_network_type:
 			MultiplayerNetworkType.ENET:
-				if is_verbose:
+				if _is_verbose:
 					print("Setting network type to ENet")
 				_set_active_network(NetworkEnet)
 			MultiplayerNetworkType.STEAM:
-				if is_verbose:
+				if _is_verbose:
 					print("Setting network type to Steam")
 				_set_active_network(NetworkSteam)
 			MultiplayerNetworkType.DISABLED:
-				if is_verbose:
+				if _is_verbose:
 					print("Disabled networking")
 				_remove_active_network()
 			_:
@@ -203,7 +203,7 @@ func _on_player_disconnected(id : int):
 func _on_connected_ok():
 	var peer_id = multiplayer.get_unique_id()
 	connected_players[peer_id] = player_info
-	if is_verbose:
+	if _is_verbose:
 		print("[%s]: Joined server" % peer_id)
 	player_connected.emit(peer_id, player_info)
 
@@ -216,7 +216,7 @@ func _on_connected_fail():
 func _on_server_disconnected():
 	disconnect_from_server()
 	server_disconnected.emit()
-	if is_verbose:
+	if _is_verbose:
 		print("Disconnected from server")
 #endregion
 

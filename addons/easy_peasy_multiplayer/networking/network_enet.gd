@@ -20,7 +20,7 @@ func become_host(_lobby_type):
 	Network.connected_players[1] = Network.player_info
 	Network.server_started.emit()
 	Network.player_connected.emit(1, Network.player_info)
-	if Network.is_verbose:
+	if Network._is_verbose:
 		print("ENet Server hosted on port " + str(PORT))
 
 ## Joins a game using an id in [Network]. See [Network.join_as_client] for more information

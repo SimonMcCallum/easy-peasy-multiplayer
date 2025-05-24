@@ -52,7 +52,7 @@ func check_command_line() -> void:
 
 				# At this point, you'll probably want to change scenes
 				# Something like a loading into lobby screen
-				if Network.is_verbose:
+				if Network._is_verbose:
 					print("Command line lobby ID: %s" % command_args[1])
 				Network.steam_lobby_id = int(command_args[1])
 				Network.is_host = false
@@ -76,7 +76,7 @@ func _on_lobby_created(response : int, lobby_id : int):
 func _create_host():
 	var error = peer.create_host(0)
 	if error != OK:
-		if Network.is_verbose:
+		if Network._is_verbose:
 			print("Error creating host: %s" %error_string(error))
 		return error
 
@@ -84,7 +84,7 @@ func _create_host():
 	Network.connected_players[1] = Network.player_info
 	Network.server_started.emit()
 	Network.player_connected.emit(1, Network.player_info)
-	if Network.is_verbose:
+	if Network._is_verbose:
 		print("Steam lobby hosted with id %s" % Network.steam_lobby_id)
 
 ## Callback function that runs when Steam responds to a [Network.list_lobbies] query with... a list of lobbies :O
@@ -111,7 +111,7 @@ func _on_lobby_joined(lobby_id : int, _permissions : int, _locked : bool, respon
 
 		if id != Steam.getSteamID():
 			connect_socket(id)
-			if Network.is_verbose:
+			if Network._is_verbose:
 				print("Connecting client to socket...")
 	else:
 		# Get the failure reason
@@ -128,18 +128,18 @@ func _on_lobby_joined(lobby_id : int, _permissions : int, _locked : bool, respon
 			10: FAIL_REASON = "A user in the lobby has blocked you from joining."
 			11: FAIL_REASON = "A user you have blocked is in the lobby."
 		if FAIL_REASON:
-			if Network.is_verbose:
+			if Network._is_verbose:
 				print("Steam lobby connection failed with error: " % FAIL_REASON)
 
 ## Creates a SteamMultiplayerPeer client
 func connect_socket(steam_id : int):
 	var error = peer.create_client(steam_id, 0)
 	if error:
-		if Network.is_verbose:
+		if Network._is_verbose:
 			print("Error creating client: %s" % error_string(error))
 		return error
 
-	if Network.is_verbose:
+	if Network._is_verbose:
 		print("Connecting peer to host...")
 	multiplayer.multiplayer_peer = peer
 #endregion

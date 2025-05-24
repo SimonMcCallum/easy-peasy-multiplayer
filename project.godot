@@ -17,8 +17,8 @@ config/icon="uid://c1julnh5bh8n1"
 
 [autoload]
 
-SteamInfo="*res://addons/easy_peasy_networking/steam_info.gd"
-Network="*res://addons/easy_peasy_networking/networking/network.gd"
+SteamInfo="*res://addons/easy_peasy_multiplayer/steam_info.gd"
+Network="*res://addons/easy_peasy_multiplayer/networking/network.gd"
 DevTools="*res://addons/dev_tools/dev_tools.gd"
 
 [debug]

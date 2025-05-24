@@ -1,7 +1,7 @@
 @tool
 extends EditorPlugin
 
-const PLUGIN_NAME = "easy_peasy_networking"
+const PLUGIN_NAME = "easy_peasy_multiplayer"
 const AUTOLOADS = {
 	"Network" : "res://addons/easy_peasy_networking/networking/network.gd",
 	"SteamInfo" : "res://addons/easy_peasy_networking/steam_info.gd"
