@@ -5,4 +5,5 @@
 /**        export-ignore
 /addons/** export-ignore
 /addons    !export-ignore
-/addons/easy_peasy_multiplayer
+/addons/easy_peasy_multiplayer !export-ignore
+/addons/easy_peasy_multiplayer/** !export-ignore
