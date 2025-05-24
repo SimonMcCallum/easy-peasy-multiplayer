@@ -16,7 +16,8 @@ These are all required for this plugin to work.
 - Host Migration
 - More GodotSteam stuff (There is SO much to that plugin)
 - Steam User Authorization
-- Allowing the game to be run without steam in the case of cross-platform/non Steam builds
+- Allowing the game to be run without Steam in the case of cross-platform/non Steam builds
+- WebSocket and HTTP support
 
 ## Installation
 ### Option 1 (easiest):
@@ -36,3 +37,4 @@ For help getting started with this plugin, go to the wiki page [Here](https://gi
 - [High Level Multiplayer | Godot](https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html)
 - [Getting Started | GodotSteam](https://godotsteam.com/getting_started/introduction/)
 - [Remote Procedure Calls/RPCs | Godot](https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html#remote-procedure-calls)
+- [Scene Selection Using High Level Multiplayer](https://godotengine.org/article/multiplayer-in-godot-4-0-scene-replication/#selecting-levels)
