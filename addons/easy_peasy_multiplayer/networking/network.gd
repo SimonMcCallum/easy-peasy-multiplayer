@@ -255,5 +255,6 @@ func propagate_ready_states(server_ready_states : Array[int]):
 func _register_player(new_player_info : Dictionary):
 	var new_player_id = multiplayer.get_remote_sender_id()
 	connected_players[new_player_id] = new_player_info
-	propagate_ready_states.rpc_id(new_player_id, players_ready)
+	if multiplayer.is_server():
+		propagate_ready_states.rpc_id(new_player_id, players_ready)
 	player_connected.emit(new_player_id, new_player_info)

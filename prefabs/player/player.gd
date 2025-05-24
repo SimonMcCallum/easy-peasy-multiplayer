@@ -8,13 +8,14 @@ const JUMP_VELOCITY = -900.0
 @onready var nametag: Label = %Nametag
 @onready var player_camera: Camera2D = %PlayerCamera
 
+func _enter_tree() -> void:
+	set_multiplayer_authority(name.to_int(), true)
+
 func _ready() -> void:
-	var player_id := name.to_int()
-	set_multiplayer_authority(player_id, true)
 	if nametag.text == "Player":
 		nametag.text = Network.player_info.name
 	else:
-		nametag.text = Network.connected_players[player_id].name
+		nametag.text = Network.connected_players[name.to_int()].name
 
 	if is_multiplayer_authority():
 		player_camera.make_current()
