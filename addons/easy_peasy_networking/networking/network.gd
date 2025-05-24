@@ -57,6 +57,8 @@ var steam_lobby_id: int = 0
 var is_verbose: bool = false
 
 func _ready():
+	ProjectSettings.settings_changed.connect(_update_settings)
+
 	# So many signals :O
 	multiplayer.peer_connected.connect(_on_player_connected)
 	multiplayer.peer_disconnected.connect(_on_player_disconnected)
@@ -117,6 +119,11 @@ func dev_join_lobby(args: Array[String]):
 func dev_disconnect():
 	disconnect_from_server()
 #endregion
+
+## This is for updating the values from the [ProjectSettings]
+func _update_settings() -> void:
+	if ProjectSettings.has_setting("easy_peasy_networking/general/verbose_network_logging"):
+		is_verbose = ProjectSettings.get_setting("easy_peasy_networking/general/verbose_network_logging", false)
 
 #region Private Network Setup Functions
 ## Sets the active network to the active network type
@@ -203,7 +210,7 @@ func _on_connected_ok():
 ## Callback function that runs on the local client when it fails to connect to a server.
 func _on_connected_fail():
 	disconnect_from_server()
-	connection_fail.emit
+	connection_fail.emit()
 
 ## Callback function that runs on the local client when it is disconnected from the server. This occurs when you are kicked, the server shuts down, or the local client is otherwise forcefully removed from the server.
 func _on_server_disconnected():

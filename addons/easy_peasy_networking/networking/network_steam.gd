@@ -30,7 +30,7 @@ func join_as_client():
 func list_lobbies():
 	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_WORLDWIDE)
 
-	if SteamInfo.steam_app_id == 480:
+	if ProjectSettings.get_setting("steam/initialization/app_id", 0) == 480:
 		Steam.addRequestLobbyListStringFilter("name", Network.steam_lobby_data["name"], Steam.LOBBY_COMPARISON_EQUAL)
 	Steam.requestLobbyList()
 #endregion
