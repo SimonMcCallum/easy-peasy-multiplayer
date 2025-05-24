@@ -17,9 +17,8 @@ config/icon="uid://c1julnh5bh8n1"
 
 [autoload]
 
-SteamInfo="*res://addons/easy_peasy_multiplayer/steam_info.gd"
 Network="*res://addons/easy_peasy_multiplayer/networking/network.gd"
-DevTools="*res://addons/dev_tools/dev_tools.gd"
+SteamInfo="*res://addons/easy_peasy_multiplayer/steam_info.gd"
 
 [debug]
 
@@ -27,7 +26,7 @@ file_logging/enable_file_logging=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dev_tools/plugin.cfg", "res://addons/easy_peasy_networking/plugin.cfg", "res://addons/easypeasynetworking/plugin.cfg")
+enabled=PackedStringArray("res://addons/easy_peasy_multiplayer/plugin.cfg")
 
 [input]
 
