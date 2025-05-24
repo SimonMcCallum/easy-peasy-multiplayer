@@ -30,7 +30,7 @@ These are all required for this plugin to work.
 - Go to `Project > Project Settings > Plugins` and enable `Easy Peasy Multiplayer`
 
 ## Getting Started
-For help getting started with this plugin, go to the wiki page [Here]().
+For help getting started with this plugin, go to the wiki page [Here](https://github.com/Skeats/easy-peasy-multiplayer/wiki/Getting-Started).
 
 ## Additional Resources
 - [High Level Multiplayer | Godot](https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html)
