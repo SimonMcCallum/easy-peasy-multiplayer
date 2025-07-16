@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://levels/slides/slides.gd" id="1_0"]
+
+[node name="Slides" type="Control"]
+script = ExtResource("1_0")
+layout_mode = 3
+anchors_preset = 0
+offset_right = 800.0
+offset_bottom = 600.0
+
+[node name="SlideRect" type="TextureRect" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch_mode = 6
