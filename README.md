@@ -1,11 +1,11 @@
 # Easy Peasy Multiplayer - Extended for Education
 ### Multiplayer in Godot with Real-time Lecture System
 
-This project is built upon the excellent [Easy Peasy Multiplayer](https://github.com/Skeats/easy-peasy-multiplayer) plugin by Skeats, extending it with a comprehensive lecture presentation system for educational use. The original plugin provides all the backend tools needed to quickly start making networked games in Godot, and we've added a real-time synchronized lecture system that demonstrates advanced multiplayer networking concepts.
+This project is built upon the excellent [Easy Peasy Multiplayer](https://github.com/Skeats/easy-peasy-multiplayer) plugin by Skeats, extending it with a lecture presentation system for educational use. The original plugin provides all the backend tools needed to quickly start making networked games in Godot, and we've added a real-time synchronized lecture system that demonstrates advanced multiplayer networking concepts.
 
 ## 🎓 Educational Extensions Added
 
-This version includes significant additions for **2nd year game development students** to learn multiplayer networking:
+This version includes significant additions for **game development students** to learn multiplayer networking:
 
 ### **Lecture System Features**
 - **Real-time Slide Synchronization**: Instructor controls slides, students follow automatically
@@ -21,7 +21,7 @@ This version includes significant additions for **2nd year game development stud
 - **Error Handling**: Robust connection management and graceful failures
 - **Export Deployment**: Production-ready build configuration
 
-## 🚀 How to Use the Lecture System
+## How to Use the Lecture System
 
 ### **For Instructors (Hosting a Lecture)**
 1. Launch the application
@@ -52,7 +52,7 @@ This version includes significant additions for **2nd year game development stud
 - **Follow Host Button**: Return to instructor's current slide
 - **Back Button**: Return to main menu
 
-## 🎮 Original Multiplayer Game Features
+## Original Multiplayer Game Features
 
 The original Easy Peasy Multiplayer functionality is fully preserved:
 
