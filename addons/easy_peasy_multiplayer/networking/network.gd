@@ -67,7 +67,7 @@ func _ready():
 	multiplayer.server_disconnected.connect(_on_server_disconnected)
 
 	# Sets the default username to the users Steam name, or if that doesnt exist, the OS name
-	if SteamInfo.steam_username:
+	if SteamInfo.steam_initialized and SteamInfo.steam_username:
 		Network.player_info["name"] = SteamInfo.steam_username
 	elif OS.has_environment("USERNAME"):
 		Network.player_info["name"] = OS.get_environment("USERNAME")
@@ -135,9 +135,14 @@ func _build_multiplayer_network(destroy_previous_network : bool = false):
 					print("Setting network type to ENet")
 				_set_active_network(NetworkEnet)
 			MultiplayerNetworkType.STEAM:
-				if _is_verbose:
-					print("Setting network type to Steam")
-				_set_active_network(NetworkSteam)
+				if not SteamInfo.steam_initialized:
+					print("Warning: Steam is not initialized. Falling back to ENet networking.")
+					active_network_type = MultiplayerNetworkType.ENET
+					_set_active_network(NetworkEnet)
+				else:
+					if _is_verbose:
+						print("Setting network type to Steam")
+					_set_active_network(NetworkSteam)
 			MultiplayerNetworkType.DISABLED:
 				if _is_verbose:
 					print("Disabled networking")

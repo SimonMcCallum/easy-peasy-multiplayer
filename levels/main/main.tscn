@@ -677,7 +677,18 @@ position = Vector2(338, 312)
 offset_right = 188.0
 offset_bottom = 77.0
 
+[node name="ToLectureButton" type="Button" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -120.0
+offset_bottom = 30.0
+grow_horizontal = 0
+text = "To Lecture"
+
 [node name="PlayerSpawner" type="MultiplayerSpawner" parent="."]
 unique_name_in_owner = true
 _spawnable_scenes = PackedStringArray("uid://cpx5lxwe6l8iv")
 spawn_path = NodePath("..")
+
+[connection signal="pressed" from="CanvasLayer/ToLectureButton" to="." method="_on_to_lecture_button_pressed"]

@@ -10,6 +10,7 @@ var timed_trial_stats: Dictionary = {}
 var app_owner: int = 0
 var steam_id: int = 0
 var steam_username: String = ""
+var steam_initialized: bool = false
 
 ## DEPRECATED
 var steam_app_id: int = 480
@@ -27,17 +28,19 @@ func _init() -> void:
 func _ready() -> void:
 	#Steam.get_auth_session_ticket_response.connect(_on_get_auth_session_ticket_response)
 	#Steam.validate_auth_ticket_response.connect(_on_validate_auth_ticket_response)
-	initialize_steam()
+	steam_initialized = initialize_steam()
 
 func _process(_delta: float) -> void:
-	Steam.run_callbacks()
+	if steam_initialized:
+		Steam.run_callbacks()
 
-func initialize_steam() -> void:
+func initialize_steam() -> bool:
 	var initialize_response: Dictionary = Steam.steamInitEx()
 
 	if initialize_response['status'] > 0:
-		print("Failed to initialize Steam, shutting down: %s" % initialize_response)
-		get_tree().quit()
+		print("Failed to initialize Steam: %s" % initialize_response)
+		print("Steam features will be disabled. You can still use ENet networking.")
+		return false
 
 	# Gather additional data
 	is_on_steam_deck = Steam.isSteamRunningOnSteamDeck()
@@ -52,8 +55,13 @@ func initialize_steam() -> void:
 	auth_ticket = Steam.getAuthSessionTicket()
 
 	if not is_owned or is_family_shared or is_free_weekend:
-		print("User does not own this game")
-		get_tree().quit()
+		print("User does not own this game on Steam")
+		print("Steam features will be disabled. You can still use ENet networking.")
+		return false
+	
+	print("Steam initialized successfully")
+	steam_initialized = true
+	return true
 
 #region User Authentication [WIP, NOT FUNCTIONING]
 # https://godotsteam.com/tutorials/authentication/#__tabbed_1_2
