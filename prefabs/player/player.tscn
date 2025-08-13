@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://cpx5lxwe6l8iv"]
+[gd_scene load_steps=15 format=3 uid="uid://cpx5lxwe6l8iv"]
 
 [ext_resource type="Script" uid="uid://vxnltni30unu" path="res://prefabs/player/player.gd" id="1_sxsrd"]
 [ext_resource type="Texture2D" uid="uid://boq1we22nyjkj" path="res://assets/spritesheet-characters-default.png" id="2_rdx4y"]
+[ext_resource type="AudioStream" uid="uid://ce7mk6xkax404" path="res://assets/audio/hello.ogg" id="3_hello"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rdx4y"]
 atlas = ExtResource("2_rdx4y")
@@ -136,3 +137,9 @@ grow_vertical = 0
 text = "Player"
 label_settings = SubResource("LabelSettings_rdx4y")
 horizontal_alignment = 1
+
+[node name="HelloAudio" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_hello")
+volume_db = -5.0
+max_distance = 1000.0

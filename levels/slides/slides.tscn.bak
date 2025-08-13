@@ -1,0 +1,91 @@
+<<<<<<< HEAD
+[gd_scene load_steps=2 format=3 uid="uid://bs1l6d12nluam"]
+
+[ext_resource type="Script" uid="uid://b866r6gt7mjy7" path="res://levels/slides/slides.gd" id="1_0"]
+
+[node name="Slides" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 800.0
+offset_bottom = 600.0
+script = ExtResource("1_0")
+
+[node name="SlideRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+=======
+[gd_scene load_steps=2 format=3 uid="uid://suypmoakdah8"]
+
+[ext_resource type="Script" uid="uid://bo1jgk52khfgs" path="res://levels/slides/slides.gd" id="1_0"]
+
+[node name="Slides" type="Control"]
+layout_mode = 3
+>>>>>>> c750a8b87f41705b0bd86d8e26ed90d12c27d715
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+<<<<<<< HEAD
+stretch_mode = 6
+=======
+script = ExtResource("1_0")
+
+[node name="SlideRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 6
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopPanel" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 50.0
+grow_horizontal = 2
+
+[node name="LeftSpacer" type="Control" parent="UI/TopPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FollowButton" type="Button" parent="UI/TopPanel"]
+layout_mode = 2
+text = "Follow Host"
+
+[node name="RightSpacer" type="Control" parent="UI/TopPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BackButton" type="Button" parent="UI/TopPanel"]
+layout_mode = 2
+text = "Back to Game"
+
+[node name="BottomPanel" type="HBoxContainer" parent="UI"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MeepleContainer" type="HBoxContainer" parent="UI/BottomPanel"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[connection signal="pressed" from="UI/TopPanel/FollowButton" to="." method="_on_follow_button_pressed"]
+[connection signal="pressed" from="UI/TopPanel/BackButton" to="." method="_on_back_button_pressed"]
+>>>>>>> c750a8b87f41705b0bd86d8e26ed90d12c27d715

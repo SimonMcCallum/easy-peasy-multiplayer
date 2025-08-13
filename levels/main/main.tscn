@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://pmsw6eydfmh5"]
+[gd_scene load_steps=10 format=4 uid="uid://pmsw6eydfmh5"]
 
 [ext_resource type="Script" uid="uid://bcuwptq6v0gk3" path="res://levels/main/main.gd" id="1_f6gjy"]
 [ext_resource type="PackedScene" uid="uid://be0p2rhviwg5u" path="res://prefabs/ui/network_ui/network_ui.tscn" id="1_vc640"]
 [ext_resource type="PackedScene" uid="uid://cpx5lxwe6l8iv" path="res://prefabs/player/player.tscn" id="2_f6gjy"]
 [ext_resource type="Texture2D" uid="uid://brhbn2d7eban7" path="res://assets/spritesheet-backgrounds-default.png" id="4_gonaa"]
 [ext_resource type="Texture2D" uid="uid://udwf0seu3o6t" path="res://assets/spritesheet-tiles-default.png" id="5_iab0w"]
+[ext_resource type="AudioStream" uid="uid://dwvqi3p8ndx38" path="res://assets/audio/Mono/ogg/JDSherbert - Ultimate UI SFX Pack - Select - 1.ogg" id="6_bgmusic"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iab0w"]
 atlas = ExtResource("4_gonaa")
@@ -690,5 +691,10 @@ text = "To Lecture"
 unique_name_in_owner = true
 _spawnable_scenes = PackedStringArray("uid://cpx5lxwe6l8iv")
 spawn_path = NodePath("..")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_bgmusic")
+volume_db = -15.0
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/ToLectureButton" to="." method="_on_to_lecture_button_pressed"]

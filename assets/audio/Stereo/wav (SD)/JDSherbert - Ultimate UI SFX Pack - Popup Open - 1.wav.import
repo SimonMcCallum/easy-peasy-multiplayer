@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://n6q105v8hnnp"
+path="res://.godot/imported/JDSherbert - Ultimate UI SFX Pack - Popup Open - 1.wav-59207a4971993b29e367a424c9c4df06.sample"
+
+[deps]
+
+source_file="res://assets/audio/Stereo/wav (SD)/JDSherbert - Ultimate UI SFX Pack - Popup Open - 1.wav"
+dest_files=["res://.godot/imported/JDSherbert - Ultimate UI SFX Pack - Popup Open - 1.wav-59207a4971993b29e367a424c9c4df06.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
