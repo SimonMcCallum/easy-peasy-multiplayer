@@ -140,6 +140,10 @@ horizontal_alignment = 1
 
 [node name="HelloAudio" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(1, -22)
 stream = ExtResource("3_hello")
 volume_db = -5.0
-max_distance = 1000.0
+autoplay = true
+max_distance = 316.0
+attenuation = 1.10957
+panning_strength = 1.07

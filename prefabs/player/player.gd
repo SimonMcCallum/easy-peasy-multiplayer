@@ -9,8 +9,12 @@ const JUMP_VELOCITY = -900.0
 @onready var player_camera: Camera2D = %PlayerCamera
 @onready var hello_audio: AudioStreamPlayer2D = %HelloAudio
 
+# Audio mute control
+var audio_muted = false
+
 func _enter_tree() -> void:
 	set_multiplayer_authority(name.to_int(), true)
+	add_to_group("Players")
 
 func _ready() -> void:
 	if nametag.text == "Player":
@@ -30,11 +34,16 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if multiplayer.has_multiplayer_peer() and not is_multiplayer_authority(): return
 
+	# Handle audio mute toggle
+	if Input.is_action_just_pressed("ui_select"):  # Spacebar to mute/unmute
+		audio_muted = !audio_muted
+		print("Audio muted: ", audio_muted)
+
 	# Handle hello audio input
 	if Input.is_action_just_pressed("hello"):
 		print("H key pressed! Playing hello audio...")
 		if multiplayer.has_multiplayer_peer():
-			play_hello_audio.rpc()
+			play_hello_audio_at_source.rpc()
 		else:
 			# Single player mode - play directly
 			play_hello_audio_local()
@@ -63,41 +72,48 @@ func play_hello_audio_local():
 	hello_audio.play()
 
 @rpc("any_peer", "call_local", "reliable")
-func play_hello_audio():
-	print("RPC play_hello_audio called")
+func play_hello_audio_at_source():
 	var sender_id = multiplayer.get_remote_sender_id()
-	var sender_player = null
+	var receiver_name = nametag.text
+	var receiver_id = name.to_int()
+	var player_identifier = receiver_name + " (ID: " + str(receiver_id) + ")"
 	
-	# Find the sender player
-	if sender_id == 0:  # Local call
-		sender_player = self
-		print("Local RPC call")
+	# Debug: Print that this player received the request
+	print("DEBUG: Player '", player_identifier, "' received audio request from sender ID: ", sender_id)
+	
+	# Find the source player who sent the audio request
+	var source_player = null
+	var source_player_id = sender_id
+	
+	if sender_id == 0:  # Local call (call_local)
+		source_player = self
+		source_player_id = receiver_id
+		print("DEBUG: Local RPC call - source is self")
 	else:
-		print("Remote RPC call from player: ", sender_id)
+		# Find the sender player in the scene
 		for player in get_tree().get_nodes_in_group("Players"):
 			if player.name.to_int() == sender_id:
-				sender_player = player
+				source_player = player
 				break
+		print("DEBUG: Remote RPC call from player ID: ", sender_id)
 	
-	if sender_player == null:
-		print("Sender player not found!")
+	if source_player == null:
+		print("DEBUG: Source player not found!")
 		return
 	
-	# Calculate distance-based volume
-	var distance = global_position.distance_to(sender_player.global_position)
-	var max_distance = 1000.0  # Maximum hearing distance
-	var volume_db = -5.0
+	# Calculate and print distance between receiving player and source player
+	var distance = global_position.distance_to(source_player.global_position)
+	print("DEBUG: Distance between receiver '", player_identifier, "' and source (ID: ", source_player_id, "): ", distance, " pixels")
+	print("DEBUG: Source position: ", source_player.global_position, ", Receiver position: ", global_position)
 	
-	if distance > max_distance:
-		print("Too far to hear (distance: ", distance, ")")
-		return  # Too far to hear
+	# Check if audio is muted for this player
+	if audio_muted:
+		print("DEBUG: Audio muted for player '", player_identifier, "' - not playing sound")
+		return
 	
-	# Linear volume falloff based on distance
-	if distance > 0:
-		var volume_factor = 1.0 - (distance / max_distance)
-		volume_db = linear_to_db(volume_factor) - 5.0
-	
-	print("Playing hello audio with volume: ", volume_db, " distance: ", distance)
-	# Play the audio with calculated volume
-	hello_audio.volume_db = volume_db
-	hello_audio.play()
+	# Only the source player actually plays the audio - others just receive debug info
+	if source_player == self:
+		print("DEBUG: Playing hello audio from source player '", player_identifier, "'")
+		hello_audio.play()
+	else:
+		print("DEBUG: Player '", player_identifier, "' will hear audio from source player at distance ", distance, " pixels")
